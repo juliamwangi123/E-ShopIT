@@ -5,7 +5,7 @@ const  Slides = () => {
                 <h1>title goes here</h1>
             </div>
             <div className="ShowSlide">
-                <h2>content  appears here</h2>
+                <h2>content  appears here in the shown format</h2>
             </div>
         </div>
      );
