@@ -1,31 +1,29 @@
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import{login } from '../../../redux/features/auth/loginSlice'
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
-  const [email, setEmail] = useState('');
+import{signup} from '../../../redux/features/auth/signupSlice'
+
+export default function Signin() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [email ,setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const { loading, error ,isAuthenticated} = useSelector((state) => state.authLogin);
+  const {error, loading, isAuthenticated} = useSelector((state) => state.authSignUp);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(email,password  )
-    dispatch(login({email:email,password:password}))
-    
-    if(!loading || isAuthenticated ){
-      navigate('/profile')
-    }
-    navigate('/login')
- };
+  const handleSignin = (e) =>{
+    e.preventDefault()
+    dispatch(signup({email:email,password:password}))
+    isAuthenticated ? navigate('/profile'): navigate('/login')   
+  };
+  
 
   return (
     <div>
-      <h1>Login</h1>
+        <h1>signin</h1>
       {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSignin}>
         <label>
           Email:
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -36,11 +34,9 @@ function Login() {
         </label>
         <button type="submit">
           {loading && <div>loading....</div>}
-          login
+          signin
         </button>
       </form>
     </div>
-  );
+  )
 }
-
-export default Login

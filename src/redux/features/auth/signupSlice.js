@@ -16,14 +16,14 @@ export const signup = createAsyncThunk('auth/signup', async({email, password})=>
 
     const data = {email, password};
 
-    const res = await axios.post('https://backend-production-33e4.up.railway.app/login', 
+    const res = await axios.post('https://backend-production-33e4.up.railway.app/signin', 
                             data, 
                             {headers:{'Content-Type': 'application/json' }
                             });
     //get the token after posting 
     const {token,user } =res.data;
     localStorage.setItem('token', token);
-    return token;
+    return {token,user}
 })
 
 const signupSlice = createSlice({

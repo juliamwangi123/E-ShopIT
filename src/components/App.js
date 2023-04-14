@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Home';
 import Login from './pages/auth/Login';
-import ProtecedRoute from '../utils/ProtectedRoutes';
 import Profile from './profile/Profile';
+import Signin from './pages/auth/Signin';
 
 
 
@@ -16,14 +16,9 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-
-        <Route path='/profile' element={ 
-
-        <ProtecedRoute>
-          <Profile/>
-        </ProtecedRoute>} />
+        <Route path='/profile' element={<Profile/>} />
+        <Route path='/signin' element ={<Signin/>} />
       </Routes>
-    
       </Router>
       
     </div>
