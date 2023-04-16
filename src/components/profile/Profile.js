@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Profile() {
   return (
-    <div>Profile</div>
+    <div className="text-3xl font-bold underline">Profile</div>
   )
 }
