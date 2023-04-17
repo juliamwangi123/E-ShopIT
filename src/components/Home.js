@@ -9,14 +9,7 @@ import axios from 'axios'
 
 
 const Home = () => {
-
-  useEffect(()=>{
-    axios.get('https://backend-production-5031.up.railway.app/products')
-    .then((res)=>{
-      res.data.products.map(products => console.log(products._id))
-    }).catch(err => console.log(err.message))
-
-  })
+  
 
     return ( 
         <div className="Home">

@@ -51,7 +51,7 @@ export default function Signin() {
         </label>
          
         <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          {loading && <div>loading....</div>}
+          {loading && <div>loading ....</div>}
           SIGN UP
         </button>
         <div className='flex items-center justify-center'>            

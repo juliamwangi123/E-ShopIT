@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
-import { async } from "rxjs"
 
 
 
-const intialState = {
+const initialState = {
     products :[],
     loading: false,
     error:'',
@@ -12,7 +11,6 @@ const intialState = {
 }
 
 export const fetchProducts = createAsyncThunk('/products/fetchProducts', async()=>{
-
     const getProducts = await axios.get('https://backend-production-5031.up.railway.app/products');
     const products =getProducts.data
     return products;
@@ -21,10 +19,10 @@ export const fetchProducts = createAsyncThunk('/products/fetchProducts', async()
 
 const productsSlice = createSlice({
     name:'products',
-    intialState,
+    initialState,
     extraReducers:(builder) =>{
         builder.addCase(fetchProducts.pending, (state)=>{
-            state.loading = true
+            state.loading = true;
         });
         builder.addCase(fetchProducts.fulfilled, (state, action)=>{
             state.products = action.payload.products;
@@ -36,8 +34,7 @@ const productsSlice = createSlice({
             state.products = [];
             state.loading = false;
             state.status = 'Failed';
-            state.error = action.error.message
-
+            state.error = action.error.message;
         })
     }
 });
