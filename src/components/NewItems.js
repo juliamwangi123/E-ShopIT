@@ -21,7 +21,7 @@ const NewItem = () => {
             {loading && <div>loading ...</div>}
             {error && <div>{error}</div>}
             {products && products.map((product)=>(<div key={product._id}>
-               <Link to={`product/${product.id}`}>
+               <Link to={`product/${product._id}`}>
                {product._id}
                </Link>
                 

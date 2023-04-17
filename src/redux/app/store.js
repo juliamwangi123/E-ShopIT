@@ -10,7 +10,7 @@ const store = configureStore({
         authLogin:loginReducer, 
         authSignUp:signUpReducer,
         products:productReducer,
-        product:productDetaiilsReducer
+        productDetails:productDetaiilsReducer
 
     }
 });

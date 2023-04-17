@@ -1,5 +1,4 @@
 
-
 *{
     font-family: Open Sans,Roboto,Helvetica,sans-serif,Arial;
 }
@@ -9,3 +8,20 @@
 @tailwind utilities;
 
 
+.paps{
+    background-color: lightgray;
+    height: 100vh;
+}
+.image{
+    width: 40%;
+
+}
+.image img{
+    height: 70%;
+    width: 70%;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+.dets{
+    padding-right: 30px;
+}

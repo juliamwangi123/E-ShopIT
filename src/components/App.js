@@ -6,6 +6,8 @@ import Login from './pages/auth/Login';
 import Profile from './profile/Profile';
 import Signin from './pages/auth/Signin';
 import ProductDetails from './products/ProductDetails';
+import Navtop from './Navtop';
+import Search from './Search';
 
 
 
@@ -14,6 +16,8 @@ function App() {
     
     <div className="App">
       <Router>
+      {/* <Navtop/> 
+      <Search/> */}
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

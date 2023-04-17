@@ -11,7 +11,7 @@ const initialState = {
 }
 
 export const fetchProduct = createAsyncThunk('product/productDetails', async(id)=>{
-    const getProduct = await axios.get(`https://backend-production-5031.up.railway.app/products/${id}`);
+    const getProduct = await axios.get(`https://backend-production-33e4.up.railway.app/products/${id}`);
     const product = getProduct.data;
     return product;
 });
@@ -26,7 +26,7 @@ const productDetailsSlice = createSlice({
         builder.addCase(fetchProduct.fulfilled , (state, action)=>{
             state.loading = false
             state.status = 'Success';
-            state.product = action.payload.product
+            state.product = action.payload
             state.error = '';
         });
         builder.addCase(fetchProduct.rejected, (state, action)=>{
