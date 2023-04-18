@@ -25,3 +25,14 @@
 .dets{
     padding-right: 30px;
 }
+.modal {
+    top: '35%';
+    left: '50%';
+    right: 'auto';
+    bottom: 'auto';
+    margin-right: '-50%';
+    width: '20%';
+    transform: 'translate(-40%, -10%)';
+    background-color: red;
+  }
+  

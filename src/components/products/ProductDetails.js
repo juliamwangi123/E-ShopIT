@@ -1,14 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchProduct } from '../../redux/features/products/productDetailsSlice';
 import Search from '../Search';
+import AddToCart from './Modals/AddToCart';
 
 export default function ProductDetails() {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { error, loading, product } = useSelector((state) => state.productDetails);
   const { id } = useParams();
 
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+  
   useEffect(() => {
     dispatch(fetchProduct(id));
   }, [dispatch]);
@@ -43,7 +48,15 @@ export default function ProductDetails() {
           />
         </div>
         <div className="flex flex-row items-center">
-          <button className="bg-transparent text-[14px] text-[#f60] border border-orange-400 px-10 py-2  mr-2">Add to Cart</button>
+          <button className="bg-transparent text-[14px] text-[#f60] border border-orange-400 px-10 py-2  mr-2"
+          // onClick={openModal}
+          
+          >Add to Cart</button>
+              <AddToCart isOpen={isOpen} onRequestClose={closeModal} portalClassName="modal">
+            <h2>Modal Title</h2>
+            <p>This is the content of the modal.</p>
+            <button onClick={closeModal}>Close Modal</button>
+       </AddToCart>
           <button className="bg-[#f60] text-white px-10 py-2 ">Buy Now</button>
         </div>
       </div>
