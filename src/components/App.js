@@ -8,6 +8,7 @@ import Signin from './pages/auth/Signin';
 import ProductDetails from './products/ProductDetails';
 import Navtop from './Navtop';
 import Search from './Search';
+import Cart from './products/cart/Cart';
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/profile' element={<Profile/>} />
         <Route path='/signup' element ={<Signin/>} />
         <Route path='product/:id' element={<ProductDetails/>} />
+        <Route path='/cart' element={<Cart/>} />
       </Routes>
       </Router>
       

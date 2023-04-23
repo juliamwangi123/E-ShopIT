@@ -1,6 +1,7 @@
 import { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addItem } from '../../redux/features/cart/cartSlice';
 import { fetchProduct } from '../../redux/features/products/productDetailsSlice';
 import Search from '../Search';
 import AddToCart from './Modals/AddToCart';
@@ -49,7 +50,7 @@ export default function ProductDetails() {
         </div>
         <div className="flex flex-row items-center">
           <button className="bg-transparent text-[14px] text-[#f60] border border-orange-400 px-10 py-2  mr-2"
-          // onClick={openModal}
+          onClick={()=>{dispatch(addItem(product))}}
           
           >Add to Cart</button>
               <AddToCart isOpen={isOpen} onRequestClose={closeModal} portalClassName="modal">
