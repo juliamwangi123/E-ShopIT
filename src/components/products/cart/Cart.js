@@ -1,7 +1,7 @@
 import {useEffect, useState}from 'react'
 import { useDispatch } from 'react-redux';
 
-import { clearCart } from '../../../redux/features/cart/cartSlice';
+import { addItem, clearCart,removeItem } from '../../../redux/features/cart/cartSlice';
 
 
 
@@ -43,13 +43,13 @@ export default function Cart() {
                   </td>
                   <td className="p-2">{item.name}</td>
                   <td className="p-2">${item.price.toFixed(2)}</td>
-                  <td className="p-2">{item.quantity}</td>
+                  <td className="p-2">-{item.quantity}+</td>
                   <td className="p-2">
                     ${(item.price * item.quantity).toFixed(2)}
                   </td>
                   <td className="p-2">
                     <button
-                      // onClick={() => removeFromCart(item.id)}
+                      onClick={() => dispatch((removeItem(item)))}
                       className="text-red-600 hover:text-red-800 font-medium"
                     >
                       X
