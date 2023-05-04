@@ -7,7 +7,8 @@ import { addItem, clearCart,removeItem } from '../../../redux/features/cart/cart
 
 export default function Cart() {
   const[cartItems, setCartItems] = useState([]);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  
 
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem('cart'));
@@ -49,7 +50,11 @@ export default function Cart() {
                   </td>
                   <td className="p-2">
                     <button
-                      onClick={() => dispatch((removeItem(item)))}
+                      onClick={() => {
+                         dispatch((removeItem(item)))
+                         setCartItems(JSON.parse(localStorage.getItem('cart')))
+                      
+                      }}
                       className="text-red-600 hover:text-red-800 font-medium"
                     >
                       X
