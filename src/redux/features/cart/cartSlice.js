@@ -35,6 +35,7 @@ const cartSlice = createSlice({
 
             if(itemExists){
                 itemExists.quantity +=1
+                console.log(itemExists.quantity)
                 localStorage.setItem('cart', JSON.stringify(getCartItem)); 
             }
         },

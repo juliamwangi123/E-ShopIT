@@ -1,7 +1,7 @@
 import {useEffect, useState}from 'react'
 import { useDispatch } from 'react-redux';
 
-import { addItem, clearCart,removeItem } from '../../../redux/features/cart/cartSlice';
+import { addQuantity ,clearCart,removeItem,decrementQuantity } from '../../../redux/features/cart/cartSlice';
 
 
 
@@ -44,7 +44,21 @@ export default function Cart() {
                   </td>
                   <td className="p-2">{item.name}</td>
                   <td className="p-2">${item.price.toFixed(2)}</td>
-                  <td className="p-2">-{item.quantity}+</td>
+                  <td className="p-2 ">
+                      <button onClick={()=>
+                      {
+                        dispatch(addQuantity(item))
+                       setCartItems(JSON.parse(localStorage.getItem('cart')))
+                      }}>+</button>
+                        <p>{item.quantity}</p>
+                      <button
+                      onClick={()=>{
+                        dispatch(decrementQuantity(item))
+                        setCartItems(JSON.parse(localStorage.getItem('cart')))
+
+                      }}
+                      >-</button>
+                    </td>
                   <td className="p-2">
                     ${(item.price * item.quantity).toFixed(2)}
                   </td>
