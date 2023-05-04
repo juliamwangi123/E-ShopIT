@@ -1,21 +1,16 @@
-import { type } from '@testing-library/user-event/dist/type';
-import {useEffect}from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../../../redux/features/cart/cartSlice'
+import {useEffect, useState}from 'react'
+
 
 
 export default function Cart() {
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cart)
+  const[cartItems, setCartItems] = useState([])
 
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem('cart'));
     if (savedCartItems && savedCartItems.length > 0) {
-      savedCartItems.forEach(element => {
-        dispatch(addItem(element))
-      });}
-    
-  }, [dispatch])
+      setCartItems(savedCartItems) 
+    }  
+  }, [])
 
   
   
