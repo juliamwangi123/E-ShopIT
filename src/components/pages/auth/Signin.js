@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
@@ -17,10 +17,13 @@ export default function Signin() {
 
   const handleSignin = (e) =>{
     e.preventDefault()
-    dispatch(signup({email:email,password:password}))
-    isAuthenticated ? navigate('/profile'): navigate('/login')   
+    dispatch(signup({email:email,password:password}));
   };
   
+useEffect (()=>{
+if(isAuthenticated){navigate('/profile')}
+
+},[isAuthenticated,navigate])
 
   return (
     <div  className="bg-gray-100 min-h-screen flex flex-col justify-center py-6 sm:py-12 lg:py-24 px-4 sm:px-6 lg:px-8">

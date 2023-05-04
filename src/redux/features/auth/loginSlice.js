@@ -17,7 +17,7 @@ export const login = createAsyncThunk('auth/login', async(data )=>{
             headers:{'Content-Type': 'application/json' }
         }
     
-        const res = await axios.post('https://backend-production-33e4.up.railway.app/login', data, config);
+        const res = await axios.post('https://backend-production-ad2e.up.railway.app/login', data, config);
         const { token, user } = res.data;
         localStorage.setItem('token', token);
         return { token, user };

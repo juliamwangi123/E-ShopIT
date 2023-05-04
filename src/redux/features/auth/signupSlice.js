@@ -16,7 +16,7 @@ export const signup = createAsyncThunk('auth/signup', async({email, password})=>
 
     const data = {email, password};
 
-    const res = await axios.post('https://backend-production-33e4.up.railway.app/signin', 
+    const res = await axios.post('hhttps://backend-production-ad2e.up.railway.app/signin', 
                             data, 
                             {headers:{'Content-Type': 'application/json' }
                             });

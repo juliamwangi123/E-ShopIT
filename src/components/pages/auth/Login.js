@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import{login } from '../../../redux/features/auth/loginSlice'
 import { useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
@@ -18,11 +18,16 @@ function Login() {
     console.log(email,password  )
     dispatch(login({email:email,password:password}))
     
-    if(!loading && isAuthenticated ){
-      navigate('/profile')
-    }
-    navigate('/login')
+   
  };
+
+ useEffect(() => {
+  if( isAuthenticated ){
+    navigate('/profile')
+   }
+ 
+ }, [isAuthenticated, navigate])
+ 
 
   return (
     <div  className="bg-gray-100 min-h-screen flex flex-col justify-center py-6 sm:py-12 lg:py-24 px-4 sm:px-6 lg:px-8">

@@ -11,7 +11,7 @@ const initialState = {
 }
 
 export const fetchProduct = createAsyncThunk('product/productDetails', async(id)=>{
-    const getProduct = await axios.get(`https://backend-production-33e4.up.railway.app/products/${id}`);
+    const getProduct = await axios.get(`https://backend-production-ad2e.up.railway.app/products/${id}`);
     const product = getProduct.data;
     return product;
 });
