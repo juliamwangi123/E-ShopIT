@@ -1,16 +1,20 @@
 import {useEffect, useState}from 'react'
+import { useDispatch } from 'react-redux';
+
+import { clearCart } from '../../../redux/features/cart/cartSlice';
 
 
 
 export default function Cart() {
-  const[cartItems, setCartItems] = useState([])
+  const[cartItems, setCartItems] = useState([]);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem('cart'));
     if (savedCartItems && savedCartItems.length > 0) {
       setCartItems(savedCartItems) 
     }  
-  }, [])
+  }, [dispatch])
 
   
   
@@ -59,7 +63,13 @@ export default function Cart() {
         {/* Cart summary */}
         <div className="flex flex-col sm:flex-row sm:justify-between items-center mt-5">
           <div className="mb-5 sm:mb-0">
-            <button className="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-md">
+            <button className="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-md"
+            onClick={()=> {
+              dispatch(clearCart())
+              setCartItems([])
+            }
+            }
+            >
               Clear Cart
             </button>
           </div>
