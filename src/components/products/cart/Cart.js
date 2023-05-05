@@ -1,20 +1,26 @@
 import {useEffect, useState}from 'react'
 import { useDispatch } from 'react-redux';
 
-import { addQuantity ,clearCart,removeItem,decrementQuantity } from '../../../redux/features/cart/cartSlice';
+import { addQuantity ,clearCart,removeItem,decrementQuantity,getTotal} from '../../../redux/features/cart/cartSlice';
 
 
 
 export default function Cart() {
   const[cartItems, setCartItems] = useState([]);
+  const [total, setTotal] = useState(0)
   const dispatch = useDispatch();
   
 
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem('cart'));
+    const totalCart = JSON.parse(localStorage.getItem('total'))
     if (savedCartItems && savedCartItems.length > 0) {
       setCartItems(savedCartItems) 
-    }  
+    };
+
+    if(totalCart){
+      setTotal(totalCart)
+    }
   }, [dispatch])
 
   
@@ -92,8 +98,7 @@ export default function Cart() {
               Clear Cart
             </button>
           </div>
-          <div className="font-medium text-lg">
-            Total: </div>
+          <div className="font-medium text-lg">Total:{total} </div>
             </div>
             </div>
             </div>
