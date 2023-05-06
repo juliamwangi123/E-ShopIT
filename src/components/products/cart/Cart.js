@@ -1,26 +1,23 @@
 import {useEffect, useState}from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { addQuantity ,clearCart,removeItem,decrementQuantity,getTotal} from '../../../redux/features/cart/cartSlice';
 
 
-
 export default function Cart() {
   const[cartItems, setCartItems] = useState([]);
-  const [total, setTotal] = useState(0)
+  const{total} = useSelector((state) =>state.cart)
   const dispatch = useDispatch();
   
 
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem('cart'));
-    const totalCart = JSON.parse(localStorage.getItem('total'))
     if (savedCartItems && savedCartItems.length > 0) {
       setCartItems(savedCartItems) 
     };
 
-    if(totalCart){
-      setTotal(totalCart)
-    }
+    dispatch(getTotal(total))
+    
   }, [dispatch])
 
   
@@ -54,14 +51,17 @@ export default function Cart() {
                       <button onClick={()=>
                       {
                         dispatch(addQuantity(item))
-                       setCartItems(JSON.parse(localStorage.getItem('cart')))
+                        setCartItems(JSON.parse(localStorage.getItem('cart')));
+                        dispatch(getTotal(total))
+
                       }}>+</button>
-                        <p>{item.quantity}</p>
+                        <p>{item.quantity}</p>    
+
                       <button
                       onClick={()=>{
                         dispatch(decrementQuantity(item))
-                        setCartItems(JSON.parse(localStorage.getItem('cart')))
-
+                        setCartItems(JSON.parse(localStorage.getItem('cart')));
+                        dispatch(getTotal(total))
                       }}
                       >-</button>
                     </td>
@@ -72,8 +72,8 @@ export default function Cart() {
                     <button
                       onClick={() => {
                          dispatch((removeItem(item)))
-                         setCartItems(JSON.parse(localStorage.getItem('cart')))
-                      
+                         setCartItems(JSON.parse(localStorage.getItem('cart')));
+                         dispatch(getTotal(total))
                       }}
                       className="text-red-600 hover:text-red-800 font-medium"
                     >
@@ -98,7 +98,8 @@ export default function Cart() {
               Clear Cart
             </button>
           </div>
-          <div className="font-medium text-lg">Total:{total} </div>
+          <div className="font-medium text-lg"
+          >Total:{total} </div>
             </div>
             </div>
             </div>

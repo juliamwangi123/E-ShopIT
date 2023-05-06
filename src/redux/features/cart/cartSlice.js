@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     cart:[],
-    total:0
+    total: 0
 }
 
 const cartSlice = createSlice({
@@ -57,19 +57,17 @@ const cartSlice = createSlice({
             localStorage.removeItem('cart')
         },
         getTotal:(state) =>{
-            const getCartItem = JSON.parse(localStorage.getItem('cart'));
-             if(getCartItem){}
-            const totalCart = getCartItem.map((item)=>{
-                return item.price* item.quantity
-            })
+            const getCartItem = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalCart = getCartItem.map((item)=>{
+                return item.price * item.quantity})
+            
 
-            if(totalCart && totalCart.length>0){
-            const total = totalCart.reduce((previousValue, currentValue) => {
+              const total = totalCart.reduce((previousValue, currentValue) => {
               return  previousValue + currentValue})
 
               state.total = total
               localStorage.setItem('total',JSON.stringify(total))
-            }
+            
         }
         
     }

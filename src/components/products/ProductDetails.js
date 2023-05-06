@@ -5,6 +5,8 @@ import { addItem } from '../../redux/features/cart/cartSlice';
 import { fetchProduct } from '../../redux/features/products/productDetailsSlice';
 import Search from '../Search';
 import AddToCart from './Modals/AddToCart';
+import { addQuantity ,decrementQuantity,getTotal} from '../../redux/features/cart/cartSlice';
+
 
 export default function ProductDetails() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +52,10 @@ export default function ProductDetails() {
         </div>
         <div className="flex flex-row items-center">
           <button className="bg-transparent text-[14px] text-[#f60] border border-orange-400 px-10 py-2  mr-2"
-          onClick={()=>{dispatch(addItem(product))}}
+          onClick={()=>{
+            dispatch(addItem(product))
+            dispatch(getTotal())
+          }}
           
           >Add to Cart</button>
               <AddToCart isOpen={isOpen} onRequestClose={closeModal} portalClassName="modal">
