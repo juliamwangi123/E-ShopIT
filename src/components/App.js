@@ -9,6 +9,7 @@ import ProductDetails from './products/ProductDetails';
 import Navtop from './Navtop';
 import Search from './Search';
 import Cart from './products/cart/Cart';
+import Home2 from './pages/auth/home/Home2';
 
 
 
@@ -20,7 +21,7 @@ function App() {
       {/* <Navtop/> 
       <Search/> */}
         <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home2/>} />
         <Route path="/login" element={<Login />} />
         <Route path='/profile' element={<Profile/>} />
         <Route path='/signup' element ={<Signin/>} />
