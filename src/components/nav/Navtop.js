@@ -3,7 +3,7 @@ import logoImage from '../../images/logo.png'
 
 const Navtop = () => {
   return (
-    <nav className="bg-white  shadow-lg mt-6">
+    <nav className="bg-white  shadow-lg mt-10">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         <div className="w-1/3">
           <img className="w-24" src={logoImage} alt="Logo" />
@@ -25,13 +25,13 @@ const Navtop = () => {
           </div>
         </div>
         <div className="w-1/3 flex justify-end">
-          <button className="bg-white flex p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+          <button className="bg-white flex p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
             <FaShoppingCart className="h-6 w-6" />
             <div className="hidden sm:block">
               <span className="">Cart</span>
             </div>
           </button>
-          <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+          <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
             <FaUser className="h-6 w-6" />
             <div className="hidden sm:block">
               <span className="">Username</span>

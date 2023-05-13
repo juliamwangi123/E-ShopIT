@@ -13,7 +13,6 @@ const NewItem = () => {
       //   res.data.products.map(products => console.log(products._id))
       // }).catch(err => console.log(err.message))
       dispatch(fetchProducts());
-      console.log(products)
   
     },[dispatch])
     return ( 
