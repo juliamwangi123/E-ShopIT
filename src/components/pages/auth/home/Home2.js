@@ -7,13 +7,13 @@ import Products from './Products'
 export default function Home2() {
   return (
     <>
-    <div>
+    <div className='bg-[#f8fafc]'>
       <Navtop/>
       <HomeBackground/>
       <div className='flash'>
         <FlashSale/>
       </div>
-      <div >
+      <div className='p'>
        <Products/>
 
       </div>
