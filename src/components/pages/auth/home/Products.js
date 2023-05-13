@@ -34,7 +34,10 @@ function Products() {
             <Link className='flex-grow  mb-[5px] description' to={`/${product._id}`}>
             <p className="text-gray-500 flex-grow   hover:text-[#f87622]">{product.description.length > 100 ? `${product.description.substr(0, 70)}...` : product.description}</p>
             </Link>
-            <p className="text-[#c00] font-[700]  text-[16px] ">${product.price.toFixed(2)}</p>
+            <div className='flex justify-between '>
+            <p className="text-[#c00] font-[700] text-[16px] ">${product.price.toFixed(2)}</p>
+            <p className='bg-[#f87622] text-[white] px-2'> Save 15% </p>
+            </div>
             <button className="bg-[#f87622] text-white text-[18px] font-[700] px-4 py-[8px] mt-2  ">Buy now</button>
           </div>
         </div>
