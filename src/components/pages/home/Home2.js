@@ -1,5 +1,5 @@
 import React from 'react'
-import Navtop from '../../../nav/Navtop'
+import Navtop from '../../nav/Navtop'
 import FlashSale from './FlashSale'
 import HomeBackground from './HomeBackground'
 import Products from './Products'

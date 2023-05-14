@@ -1,15 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css';
-import Home from './Home';
 import Login from './pages/auth/Login';
 import Profile from './profile/Profile';
 import Signin from './pages/auth/Signin';
 import ProductDetails from './products/ProductDetails';
-import Navtop from './Navtop';
-import Search from './Search';
 import Cart from './products/cart/Cart';
-import Home2 from './pages/auth/home/Home2';
+import Home2 from './pages/home/Home2';
 
 
 

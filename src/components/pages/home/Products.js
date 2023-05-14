@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
 
-import{fetchProducts} from '../../../../redux/features/products/productSlice'
+import{fetchProducts} from '../../../redux/features/products/productSlice'
 
 function Products() {
     const {loading, error} = useSelector((state)=>state.products );
