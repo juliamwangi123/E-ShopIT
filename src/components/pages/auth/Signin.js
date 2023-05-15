@@ -10,18 +10,23 @@ import{signup} from '../../../redux/features/auth/signupSlice'
 export default function Signin() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [email ,setEmail] = useState('');
+  const[formError, setError] = useState()
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const {error, loading, isAuthenticated} = useSelector((state) => state.authSignUp);
 
   const handleSignin = (e) =>{
-    e.preventDefault()
+    e.preventDefault();
+    if (!email || !password) {
+      setError('Field should be filled');
+      return;
+    }
     dispatch(signup({email:email,password:password}));
   };
   
 useEffect (()=>{
-if(isAuthenticated){navigate('/profile')}
+// if(isAuthenticated){navigate('/profile')}
 
 },[isAuthenticated,navigate])
 
@@ -40,8 +45,9 @@ if(isAuthenticated){navigate('/profile')}
                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)} 
-                className="appearance-none block w-full py-3 px-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className={`appearance-none block w-full py-3 px-4 border ${formError && !email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
                 />
+                {formError && !email && <p className="text-red-500">{formError}</p>}
         </label>
          
         <label className="block text-gray-700 font-bold mb-2"> Password:
@@ -49,8 +55,9 @@ if(isAuthenticated){navigate('/profile')}
             type="password" 
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
-            className="appearance-none block w-full py-3 px-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            className={`appearance-none block w-full py-3 px-4 border ${formError && !email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
             />
+            {formError && !password && <p className="text-red-500">{formError}</p>}
         </label>
          
         <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

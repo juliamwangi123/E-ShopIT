@@ -16,14 +16,22 @@ export const signup = createAsyncThunk('auth/signup', async({email, password})=>
 
     const data = {email, password};
 
-    const res = await axios.post('hhttps://backend-production-ad2e.up.railway.app/signin', 
+    try{
+        const res = await axios.post('https://backend-production-ad2e.up.railway.app/signup/', 
                             data, 
                             {headers:{'Content-Type': 'application/json' }
                             });
     //get the token after posting 
     const {token,user } =res.data;
+    console.log(res)
+
     localStorage.setItem('token', token);
     return {token,user}
+    }
+    catch (error) {
+        throw new Error(error.response.data.error); // Throw the error to be handled by createAsyncThunk
+      }
+
 })
 
 const signupSlice = createSlice({
