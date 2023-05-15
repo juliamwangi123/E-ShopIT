@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { addItem } from '../../redux/features/cart/cartSlice';
 import { fetchProduct } from '../../redux/features/products/productDetailsSlice';
 import AddToCart from './Modals/AddToCart';
-import { addQuantity ,decrementQuantity,getTotal} from '../../redux/features/cart/cartSlice';
+import { addQuantity ,decrementQuantity,getTotal,getCartlength} from '../../redux/features/cart/cartSlice';
 import Navtop from '../nav/Navtop';
 
 
@@ -58,6 +58,7 @@ export default function ProductDetails() {
           onClick={()=>{
             dispatch(addItem(product))
             dispatch(getTotal())
+            // dispatch(getCartlength())
           }}
           
           >Add to Cart</button>

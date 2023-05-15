@@ -13,7 +13,6 @@ const initialState = {
 export const fetchProduct = createAsyncThunk('product/productDetails', async(id)=>{
     const getProduct = await axios.get(`https://backend-production-ad2e.up.railway.app/${id}`);
     const product = getProduct.data;
-    console.log(product)
     return product;
 });
 
