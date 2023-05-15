@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { addItem } from '../../redux/features/cart/cartSlice';
 import { fetchProduct } from '../../redux/features/products/productDetailsSlice';
 import AddToCart from './Modals/AddToCart';
-import { addQuantity ,decrementQuantity,getTotal,getCartlength} from '../../redux/features/cart/cartSlice';
+import { addQuantity ,decrementQuantity,getTotal,getCartLength} from '../../redux/features/cart/cartSlice';
 import Navtop from '../nav/Navtop';
 
 
@@ -12,6 +12,8 @@ export default function ProductDetails() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { error, loading, product } = useSelector((state) => state.productDetails);
+  // const cartTotalItem = useSelector((state) => state.cart.totalItems);
+
   const { id } = useParams();
 
   const openModal = () => setIsOpen(true);
@@ -58,7 +60,7 @@ export default function ProductDetails() {
           onClick={()=>{
             dispatch(addItem(product))
             dispatch(getTotal())
-            // dispatch(getCartlength())
+            dispatch(getCartLength());
           }}
           
           >Add to Cart</button>

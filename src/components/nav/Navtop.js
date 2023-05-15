@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import logoImage from '../../images/logo.png'
-import { getCartlength} from '../../redux/features/cart/cartSlice'
+import{getCartLength} from '../../redux/features/cart/cartSlice'
 
 const Navtop = () => {
   const dispatch = useDispatch();
-  const [cartTotalItem, newCartTotalItems] = useState(null)
+  // const [cartTotalItem, newCartTotalItems] = useState(null);
+  const cartTotalItem = useSelector((state) => state.cart.totalItems);
 
 
   useEffect(() => {
-    const numberOfCartItems = JSON.parse(localStorage.getItem('cart'))
-    const getPayload= dispatch(getCartlength(numberOfCartItems))
-    newCartTotalItems(getPayload.payload.length)
+    dispatch(getCartLength());
+  
   }, [dispatch])
   
 
