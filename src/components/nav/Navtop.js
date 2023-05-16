@@ -40,7 +40,7 @@ const Navtop = () => {
               Search
             </button>
           </div>
-          <div>
+          <div className="">
           <Category/>
           </div>
         </div>
