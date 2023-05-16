@@ -3,6 +3,7 @@ import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import logoImage from '../../images/logo.png'
 import{getCartLength} from '../../redux/features/cart/cartSlice'
+import Category from "../categories/Category";
 
 const Navtop = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ const Navtop = () => {
             <button className="absolute bg-[#f87622] rounded-tr-[25px] rounded-br-[30px] text-[white] px-4 h-full right-0 top-0" type="submit">
               Search
             </button>
+          </div>
+          <div>
+          <Category/>
           </div>
         </div>
         <div className="w-1/3 flex justify-end">

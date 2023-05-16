@@ -5,7 +5,8 @@ import { FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 
-import{signup} from '../../../redux/features/auth/signupSlice'
+import{signup} from '../../../redux/features/auth/signupSlice';
+import {handleGoogleCallback} from '../../../redux/features/auth/oauthSlice'
 
 export default function Signin() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -20,11 +21,25 @@ export default function Signin() {
     e.preventDefault();
     if (!email || !password) {
       setError('Field should be filled');
-      return;
+      return
     }
     dispatch(signup({email:email,password:password}));
   };
   
+
+  const handleSignInWithGoogle = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams)
+    const code = urlParams.get('code');
+    console.log(code)
+    if (code) {
+      dispatch(handleGoogleCallback(code));
+    }
+  };
+  
+
+
 useEffect (()=>{
 // if(isAuthenticated){navigate('/profile')}
 
@@ -38,8 +53,8 @@ useEffect (()=>{
           <h2 className="text-4xl font-font-semibold mb-2 text-orange-500  ">SIGN UP</h2>
           <p className='text-sm text-gray-400'> Welcome to E-shopIt</p>
           </div>
-      {error && <p>{error}</p>}
-      <form className="space-y-6"  onSubmit={handleSignin}>
+      {error && <p className="text-red-500">{error}</p>}
+      <form className="space-y-6">
         <label className="block text-gray-700 font-bold mb-1">Email:
         <input 
                type="email"
@@ -61,6 +76,7 @@ useEffect (()=>{
         </label>
          
         <button type="submit" 
+                onClick={handleSignin}
                 className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm 
                 font-medium text-white  bg-orange-500  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
                 // disabled={!email || !password}
@@ -72,7 +88,10 @@ useEffect (()=>{
           <small >or</small>
         </div>
         <button
-        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black  bg-gray-200  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        type='submit'
+        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black  bg-gray-200  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        onClick={handleSignInWithGoogle}
+        >
           <FaGoogle className="mr-2 my-[2px]"/>
           SIGN UP USING GOOGLE
         </button>

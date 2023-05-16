@@ -63,13 +63,16 @@ const cartSlice = createSlice({
                 const totalCart = getCartItem.map((item)=>{
                 return item.price * item.quantity})
             
+                if(totalCart.length >0){
+                    const total = totalCart.reduce((previousValue, currentValue) => {
+                        return  previousValue + currentValue})
+          
+                        state.total = total
+                        localStorage.setItem('total',JSON.stringify(total))
+                      
+                }
 
-              const total = totalCart.reduce((previousValue, currentValue) => {
-              return  previousValue + currentValue})
-
-              state.total = total
-              localStorage.setItem('total',JSON.stringify(total))
-            
+              
         },
         getCartLength: (state) => {
             const getCartItem = JSON.parse(localStorage.getItem("cart")) || [];
