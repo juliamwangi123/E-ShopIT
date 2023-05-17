@@ -22,12 +22,12 @@ export const signup = createAsyncThunk('auth/signup', async({email, password})=>
                             {headers:{'Content-Type': 'application/json' }
                             });
     //get the token after posting 
-    const {token,user } =res.data;
-    console.log(res)
+    const {jwtToken,user } =res.data;
+    console.log(jwtToken)
 
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', jwtToken);
     localStorage.setItem('userId', user._id)
-    return {token,user}
+    return {jwtToken,user}
     }
     catch (error) {
         throw new Error(error.response.data.error); // Throw the error to be handled by createAsyncThunk
@@ -45,7 +45,7 @@ const signupSlice = createSlice({
         builder.addCase(signup.fulfilled, (state, action)=>{
             state.error=null
             state.isAuthenticated = true
-            state.token = action.payload.token
+            state.token = action.payload.jwtToken
             state.user = action.payload.user 
             state.loading= false  
         });

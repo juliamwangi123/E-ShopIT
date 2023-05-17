@@ -18,13 +18,13 @@ export const login = createAsyncThunk('auth/login', async(data )=>{
         }
     
         const res = await axios.post('https://backend-production-ad2e.up.railway.app/login/', data, config);
-        const { token, user } = res.data;
-        localStorage.setItem('token', token);
-        return { token, user };
+        const { jwtToken, user } = res.data;
+        localStorage.setItem('token', jwtToken);
+        return { jwtToken, user };
 })
 
 export const logout = createAsyncThunk('auth/logout', async () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('jwtToken');
     delete axios.defaults.headers.common['Authorization'];
   });
 
@@ -38,7 +38,7 @@ const loginSlice = createSlice({
         builder.addCase(login.fulfilled, (state,action)=>{
             state.error=null
             state.isAuthenticated = true
-            state.token = action.payload.token
+            state.token = action.payload.jwtToken
             state.user = action.payload.user 
             state.loading= false     
         })

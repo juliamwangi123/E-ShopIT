@@ -12,7 +12,6 @@ function Profile() {
   useEffect(()=>{
     axios.get(`https://backend-production-ad2e.up.railway.app/profile/${id}`)
     .then((res)=>{
-      console.log(res.data)
       setuserProfile(res.data)
     }).catch((error) => setError(error.message))
   },[])
