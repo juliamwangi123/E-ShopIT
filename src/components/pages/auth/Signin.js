@@ -41,7 +41,7 @@ export default function Signin() {
 
 
 useEffect (()=>{
-// if(isAuthenticated){navigate('/profile')}
+if(isAuthenticated){navigate('/profile')}
 
 },[isAuthenticated,navigate])
 
