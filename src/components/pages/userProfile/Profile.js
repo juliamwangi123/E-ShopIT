@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import { capitalize } from "lodash";
+
 
 function Profile() {
   const[userProfile, setuserProfile] = useState([])
@@ -27,7 +29,7 @@ function Profile() {
           />
         </div>
         <div className="md:ml-8 mt-4 md:mt-0">
-          <h1 className="text-2xl font-bold mb-2"> {userProfile.email.split("@")[0]}</h1>
+          <h1 className="text-2xl font-bold mb-2">{userProfile.email ? capitalize(userProfile.email.split('@')[0] ): ""}</h1>
           <p className="text-gray-600 text-lg">
            {userProfile.email}
           </p>
@@ -38,7 +40,7 @@ function Profile() {
           <h2 className="text-lg font-bold mb-4">Personal Information</h2>
           <ul className="text-gray-600">
             <li className="mb-2">
-              <span className="font-bold">Name:</span> {userProfile.email.split("@")[0]}
+              <span className="font-bold">Name:</span> {userProfile.email ? capitalize(userProfile.email.split('@')[0] ): ""}
             </li>
             <li className="mb-2">
               <span className="font-bold">Email:</span>{userProfile.email}
@@ -56,7 +58,7 @@ function Profile() {
           <h2 className="text-lg font-bold mb-4">Account Information</h2>
           <ul className="text-gray-600">
             <li className="mb-2">
-              <span className="font-bold">Username:</span>  {userProfile.email.split("@")[0]}
+              <span className="font-bold">Username:</span>  {userProfile.email ? capitalize(userProfile.email.split('@')[0] ): ""}
             </li>
             <li className="mb-2">
               <span className="font-bold">Password:</span> *********
