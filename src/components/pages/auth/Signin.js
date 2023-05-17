@@ -15,7 +15,7 @@ export default function Signin() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const {error, loading, isAuthenticated} = useSelector((state) => state.authSignUp);
+  const {error, loading, isAuthenticated,user} = useSelector((state) => state.authSignUp);
 
   const handleSignin = (e) =>{
     e.preventDefault();
@@ -41,7 +41,7 @@ export default function Signin() {
 
 
 useEffect (()=>{
-// if(isAuthenticated){navigate('/profile')}
+if(isAuthenticated){navigate(`/profile/${user._id}`)}
 
 },[isAuthenticated,navigate])
 

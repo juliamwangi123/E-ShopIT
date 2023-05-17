@@ -43,7 +43,7 @@ export default function Cart() {
               {cartItems.map((item) => (
                 <tr key={item._id} className="border-b">
                   <td className="p-2">
-                    <img src='https://image.kilimall.com/kenya/shop/store/goods/5238/2023/02/167757469060249646f69c02840238d835b9d5199c5bd_720.png.webp' alt={item.name} className="h-20" />
+                    <img src={item.image} alt={item.name} className="h-20" />
                   </td>
                   <td className="p-2">{item.name}</td>
                   <td className="p-2">${item.price.toFixed(2)}</td>

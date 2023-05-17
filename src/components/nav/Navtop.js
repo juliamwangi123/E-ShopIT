@@ -68,6 +68,7 @@ const userId= localStorage.getItem('userId');
           </div>
         </div>
         <div className="w-1/3 flex justify-end">
+        <Link to={'/cart'}>
         <button className="bg-white flex p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white relative">
            <FaShoppingCart className="h-6 w-6" />
             {cartTotalItem > 0 && (
@@ -79,6 +80,7 @@ const userId= localStorage.getItem('userId');
                 <span className="">Cart</span>
               </div>
             </button>
+            </Link>
             {userId ? <Link to={`profile/${userId}`}>
               <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                 <FaUser className="h-6 w-6" />
