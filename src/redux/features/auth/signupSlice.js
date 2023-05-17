@@ -26,6 +26,7 @@ export const signup = createAsyncThunk('auth/signup', async({email, password})=>
     console.log(res)
 
     localStorage.setItem('token', token);
+    localStorage.setItem('userId', user._id)
     return {token,user}
     }
     catch (error) {

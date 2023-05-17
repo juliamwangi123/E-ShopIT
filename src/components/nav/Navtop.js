@@ -13,13 +13,14 @@ const Navtop = ({onSearch}) => {
   const dispatch = useDispatch();
   // const [cartTotalItem, newCartTotalItems] = useState(null);
   const cartTotalItem = useSelector((state) => state.cart.totalItems);
-  const{user} = useSelector((state)=> state.authSignUp)
-  const [searchInput, setSearchInput] = useState('');
+  // const{user} = useSelector((state)=> state.authSignUp)
+  const [searchInput, setSearchInput] = useState('')
+  
+const userId= localStorage.getItem('userId');
 
   useEffect(() => {
     dispatch(getCartLength());
 
-    console.log(user)
   
   }, [dispatch])
 
@@ -78,7 +79,7 @@ const Navtop = ({onSearch}) => {
                 <span className="">Cart</span>
               </div>
             </button>
-            {user ? <Link to={`profile${user._id}`}>
+            {userId ? <Link to={`profile/${userId}`}>
               <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                 <FaUser className="h-6 w-6" />
                 <div className="hidden sm:block">
