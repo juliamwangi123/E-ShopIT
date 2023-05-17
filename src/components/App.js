@@ -8,6 +8,7 @@ import ProductDetails from './products/ProductDetails';
 import Cart from './products/cart/Cart';
 import Home2 from './pages/home/Home2';
 
+import {CategoryProvider} from '../context/categoryContext'
 
 
 function App() {

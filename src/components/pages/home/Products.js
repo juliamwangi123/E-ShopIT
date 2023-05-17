@@ -1,32 +1,54 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
 
 import{fetchProducts} from '../../../redux/features/products/productSlice'
 
-function Products() {
-    const {loading, error} = useSelector((state)=>state.products );
+function Products({ searchQuery }) {
+    const {loading,products, error} = useSelector((state)=>state.products );
+    const [matchingProducts, setMatchingProducts] = useState([]);
+    const[noProduct, setNoProduct] = useState(false)
     const dispatch = useDispatch();
 
-    useEffect(()=>{
-      dispatch(fetchProducts());
-    },[dispatch]);
 
-    //dispay random products 
-    const getRandomProducts = (state) => {
-      const products = state.products.products;
+  useEffect(()=>{
+    if (!searchQuery) {
+      // Reset the matching products array if the search query is empty
+      setMatchingProducts([]);
+      setNoProduct(false)
+    } else {
+      // Filter the products based on the search query and update the state
+      const filteredProducts = products.filter((product) => {
+        if(product.title.toLowerCase().includes(searchQuery) || 
+           product.category.toLowerCase().includes(searchQuery))
+         { return product}
+      });
+      setMatchingProducts(filteredProducts);
+
+      if(filteredProducts.length === 0){
+        setNoProduct(true)}
+    }
+
+      dispatch(fetchProducts());
+    },[searchQuery,dispatch]);
+
+
+    // dispay random products 
+  const getRandomProducts = () => {
       const shuffledProducts = [...products].sort(() => 0.5 - Math.random());
       return shuffledProducts.slice(0, 8);
     };
 
-    const products = useSelector(getRandomProducts)
-    
+
+ const showProducts =  searchQuery ? matchingProducts : getRandomProducts()
+  
   return (
     <div className='flex items-center justify-center'>
        {loading && <div className='Loader'></div>}
+       {noProduct && <div className='text-[24px]'> Sorry! Item out of stock</div>}
         {error && <div>{error}</div>}
         <div className=" flex flex-wrap -mx-4">
-          {products &&products.map(product => (
+          {showProducts &&showProducts.map(product => (
         <div key={product._id} className=" w-full sm:w-1/2 md:w-1/4 p-2">
           <div className="bg-white rounded-lg shadow p-4 h-full flex flex-col">
             <img src={product.image} alt={product.name} className="w-full h-48 object-contain mb-4 rounded-lg" />

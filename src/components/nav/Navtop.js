@@ -4,17 +4,29 @@ import { useDispatch, useSelector } from "react-redux";
 import logoImage from '../../images/logo.png'
 import{getCartLength} from '../../redux/features/cart/cartSlice'
 import Category from "../categories/Category";
+import{fetchProducts} from '../../redux/features/products/productSlice'
 
-const Navtop = () => {
+
+const Navtop = ({onSearch}) => {
   const dispatch = useDispatch();
   // const [cartTotalItem, newCartTotalItems] = useState(null);
   const cartTotalItem = useSelector((state) => state.cart.totalItems);
-
+  const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
     dispatch(getCartLength());
   
   }, [dispatch])
+
+  const handleInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearch = () => {
+    onSearch(searchInput);
+  };
+
+  
   
 
   //get the cart items lenght 
@@ -23,7 +35,8 @@ const Navtop = () => {
     <nav className="bg-white  shadow-lg mt-10">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         <div className="w-1/3">
-          <img className="w-24" src={logoImage} alt="Logo" />
+          <img className="w-24" src={logoImage} alt="Logo" 
+          />
         </div>
         <div className="w-2/3">
           <div className="relative flex items-center">
@@ -35,8 +48,12 @@ const Navtop = () => {
               type="text"
               placeholder="Search"
               aria-label="Search"
+              value={searchInput} onChange={handleInputChange}
             />
-            <button className="absolute bg-[#f87622] rounded-tr-[25px] rounded-br-[30px] text-[white] px-4 h-full right-0 top-0" type="submit">
+            <button className="absolute bg-[#f87622] rounded-tr-[25px] rounded-br-[30px] text-[white] px-4 h-full right-0 top-0" type="submit"
+                  onClick={handleSearch}
+            >
+              
               Search
             </button>
           </div>
