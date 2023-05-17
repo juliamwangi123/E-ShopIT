@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import logoImage from '../../images/logo.png'
 import{getCartLength} from '../../redux/features/cart/cartSlice'
 import Category from "../categories/Category";
@@ -11,10 +13,13 @@ const Navtop = ({onSearch}) => {
   const dispatch = useDispatch();
   // const [cartTotalItem, newCartTotalItems] = useState(null);
   const cartTotalItem = useSelector((state) => state.cart.totalItems);
+  const{user} = useSelector((state)=> state.authSignUp)
   const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
     dispatch(getCartLength());
+
+    console.log(user)
   
   }, [dispatch])
 
@@ -73,12 +78,25 @@ const Navtop = ({onSearch}) => {
                 <span className="">Cart</span>
               </div>
             </button>
+            {user ? <Link to={`profile${user._id}`}>
+              <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <FaUser className="h-6 w-6" />
+                <div className="hidden sm:block">
+                  <span className="">Username</span>
+                </div>
+              </button>
+          </Link> :
+          <Link to={'/login'}>
           <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
             <FaUser className="h-6 w-6" />
             <div className="hidden sm:block">
-              <span className="">Username</span>
+              <span className="">My account</span>
             </div>
           </button>
+      </Link> 
+          
+          }
+           
         </div>
       </div>
     </nav>
