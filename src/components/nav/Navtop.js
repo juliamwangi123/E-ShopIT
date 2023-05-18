@@ -84,7 +84,9 @@ const Navtop = ({onSearch}) => {
               </div>
             </button>
             </Link>
-            {userId ? <div className="relative">
+            {userId ? 
+            <div className="relative">
+              {/* if user is logged in display */}
               <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                       onClick={toggleDropdown}>
                 <FaUser className="h-6 w-6" />
@@ -100,17 +102,21 @@ const Navtop = ({onSearch}) => {
               </div>)}
           </div>
           :
-          <Link to={'/login'}>
-          <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+          // else
+          <div className="relative">
+          <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+          onClick={toggleDropdown}>
             <FaUser className="h-6 w-6" />
             <div className="hidden sm:block">
               <span className="">My account</span>
             </div>
           </button>
-      </Link> 
-          
-          }
-           
+          {isOpen && (
+                <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
+                 {/* Dropdown content */}
+                  <Link to={'/login'} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</Link>
+              </div>)}
+          </div>}
         </div>
       </div>
     </nav>
