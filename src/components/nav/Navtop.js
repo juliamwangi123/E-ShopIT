@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logoImage from '../../images/logo.png'
 import{getCartLength} from '../../redux/features/cart/cartSlice'
 import Category from "../categories/Category";
-import{fetchProducts} from '../../redux/features/products/productSlice'
+import{logout} from '../../redux/features/auth/loginSlice'
 
 
 const Navtop = ({onSearch}) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartTotalItem = useSelector((state) => state.cart.totalItems);
   const [searchInput, setSearchInput] = useState('')
   const [isOpen, setIsOpen] = useState(false);
+
 
   //handle toggle menu on profile
   const toggleDropdown = () => {
@@ -22,6 +24,7 @@ const Navtop = ({onSearch}) => {
 
   //get userId and append it to profile route
   const userId= localStorage.getItem('userId');
+  const token = localStorage.getItem('token')
 
   
 //handle search
@@ -32,6 +35,13 @@ const Navtop = ({onSearch}) => {
   const handleSearch = () => {
     onSearch(searchInput);
   };
+
+  //logout user
+  const handleLogout = () =>{
+    dispatch(logout())
+    navigate('/login')
+
+  }
 
   
   useEffect(() => {
@@ -62,7 +72,6 @@ const Navtop = ({onSearch}) => {
             <button className="absolute bg-[#f87622] rounded-tr-[25px] rounded-br-[30px] text-[white] px-4 h-full right-0 top-0" type="submit"
                   onClick={handleSearch}
             >
-              
               Search
             </button>
           </div>
@@ -84,7 +93,7 @@ const Navtop = ({onSearch}) => {
               </div>
             </button>
             </Link>
-            {userId ? 
+            {userId && token ? 
             <div className="relative">
               {/* if user is logged in display */}
               <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -98,8 +107,11 @@ const Navtop = ({onSearch}) => {
                 <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
                  {/* Dropdown content */}
                   <Link to={`profile/${userId}` } className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</Link>
-                  <Link className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</Link>
-              </div>)}
+                  <p className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                        onClick={()=>{handleLogout()}}>
+                        Logout
+                    </p>
+                </div>)}
           </div>
           :
           // else

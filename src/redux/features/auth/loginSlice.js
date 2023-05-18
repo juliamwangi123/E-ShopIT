@@ -24,7 +24,7 @@ export const login = createAsyncThunk('auth/login', async(data )=>{
 })
 
 export const logout = createAsyncThunk('auth/logout', async () => {
-    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('token');
     delete axios.defaults.headers.common['Authorization'];
   });
 
