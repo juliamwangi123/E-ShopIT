@@ -26,8 +26,10 @@ const handleAddToCart = () =>{
       dispatch(addItem(product))
       dispatch(getTotal())
       dispatch(getCartLength());
+  }else{
+    navigate('/login')
+
   }
-  navigate('/login')
 }
   
   useEffect(() => {
