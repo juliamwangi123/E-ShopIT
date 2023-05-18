@@ -11,19 +11,20 @@ import{fetchProducts} from '../../redux/features/products/productSlice'
 
 const Navtop = ({onSearch}) => {
   const dispatch = useDispatch();
-  // const [cartTotalItem, newCartTotalItems] = useState(null);
   const cartTotalItem = useSelector((state) => state.cart.totalItems);
-  // const{user} = useSelector((state)=> state.authSignUp)
   const [searchInput, setSearchInput] = useState('')
+  const [isOpen, setIsOpen] = useState(false);
+
+  //handle toggle menu on profile
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  //get userId and append it to profile route
+  const userId= localStorage.getItem('userId');
+
   
-const userId= localStorage.getItem('userId');
-
-  useEffect(() => {
-    dispatch(getCartLength());
-
-  
-  }, [dispatch])
-
+//handle search
   const handleInputChange = (e) => {
     setSearchInput(e.target.value);
   };
@@ -33,9 +34,11 @@ const userId= localStorage.getItem('userId');
   };
 
   
+  useEffect(() => {
+    dispatch(getCartLength());
+  }, [dispatch])
   
 
-  //get the cart items lenght 
 
   return (
     <nav className="bg-white  shadow-lg mt-10">
@@ -81,14 +84,22 @@ const userId= localStorage.getItem('userId');
               </div>
             </button>
             </Link>
-            {userId ? <Link to={`profile/${userId}`}>
-              <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+            {userId ? <div className="relative">
+              <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                      onClick={toggleDropdown}>
                 <FaUser className="h-6 w-6" />
                 <div className="hidden sm:block">
                   <span className="">Username</span>
                 </div>
               </button>
-          </Link> :
+              {isOpen && (
+                <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
+                 {/* Dropdown content */}
+                  <Link to={`profile/${userId}` } className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</Link>
+                  <Link className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</Link>
+              </div>)}
+          </div>
+          :
           <Link to={'/login'}>
           <button className="flex ml-4 bg-white p-1 rounded-full text-gray-400 hover:text-[#f87622] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
             <FaUser className="h-6 w-6" />
