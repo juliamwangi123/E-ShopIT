@@ -1,6 +1,6 @@
 import {useEffect, useState}from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { addQuantity ,clearCart,removeItem,decrementQuantity,getTotal} from '../../../redux/features/cart/cartSlice';
 
 
@@ -10,18 +10,18 @@ export default function Cart() {
   const dispatch = useDispatch();
   
 
+
+  
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem('cart'));
     if (savedCartItems && savedCartItems.length > 0) {
       setCartItems(savedCartItems) 
     };
-
     dispatch(getTotal(total))
     
   }, [dispatch])
 
-  
-  
+ 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-10">
       <h1 className="text-3xl font-bold mb-5">Your Cart</h1>
@@ -102,6 +102,14 @@ export default function Cart() {
           >Total:{total} </div>
             </div>
             </div>
+            <Link to={'/orderSummary'}>
+            <button
+                className="bg-orange-500 mt-[10px] hover:bg-orange-600 text-white font-bold py-2 px-4 rounded "
+                type="button" >
+              Proceed to Checkout
+            </button>
+            </Link>
+
             </div>
 
         

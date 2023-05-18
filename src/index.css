@@ -111,7 +111,14 @@
     100% { transform: rotate(360deg); }
   }
   
-
+.order{
+    width: 70%
+}
+.proceedBtn{
+    text-align: center;
+    border: 2px solid red;
+    height: 100px;
+}
 
 
 

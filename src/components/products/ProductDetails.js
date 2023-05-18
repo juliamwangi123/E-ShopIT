@@ -1,6 +1,8 @@
 import { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { PayPalButton } from "react-paypal-button-v2";
+
 import { addItem } from '../../redux/features/cart/cartSlice';
 import { fetchProduct } from '../../redux/features/products/productDetailsSlice';
 import AddToCart from './Modals/AddToCart';
@@ -31,8 +33,11 @@ const handleAddToCart = () =>{
 
   }
 }
-  
+
+
+
   useEffect(() => {
+    
     dispatch(fetchProduct(id));
   }, [dispatch]);
 
