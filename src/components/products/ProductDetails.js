@@ -1,6 +1,6 @@
 import { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { addItem } from '../../redux/features/cart/cartSlice';
 import { fetchProduct } from '../../redux/features/products/productDetailsSlice';
 import AddToCart from './Modals/AddToCart';
@@ -9,15 +9,26 @@ import Navtop from '../nav/Navtop';
 
 
 export default function ProductDetails() {
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { error, loading, product } = useSelector((state) => state.productDetails);
-  // const cartTotalItem = useSelector((state) => state.cart.totalItems);
 
   const { id } = useParams();
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+
+//handle add to cart
+const handleAddToCart = () =>{
+  const token = localStorage.getItem('token')
+  if(token){
+      dispatch(addItem(product))
+      dispatch(getTotal())
+      dispatch(getCartLength());
+  }
+  navigate('/login')
+}
   
   useEffect(() => {
     dispatch(fetchProduct(id));
@@ -57,12 +68,7 @@ export default function ProductDetails() {
         </div>
         <div className="flex flex-row items-center">
           <button className="bg-transparent text-[14px] text-[#f60] border border-orange-400 px-10 py-2  mr-2"
-          onClick={()=>{
-            dispatch(addItem(product))
-            dispatch(getTotal())
-            dispatch(getCartLength());
-          }}
-          
+          onClick={handleAddToCart} 
           >Add to Cart</button>
               <AddToCart isOpen={isOpen} onRequestClose={closeModal} portalClassName="modal">
             <h2>Modal Title</h2>
