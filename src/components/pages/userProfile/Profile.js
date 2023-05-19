@@ -22,7 +22,7 @@ function Profile() {
       <div className="flex flex-col md:flex-row justify-center items-center my-8">
         <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden">
           <img
-            src=''
+            src='https://image.kilimall.com/global/images/avatar.png.webp'
             alt="Avatar"
             className="w-full h-full object-cover"
           />

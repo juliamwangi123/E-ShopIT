@@ -56,6 +56,7 @@ const cartSlice = createSlice({
           },
         clearCart:() =>{
             localStorage.removeItem('cart') 
+            localStorage.removeItem('total')
             
         },
         getTotal:(state) =>{

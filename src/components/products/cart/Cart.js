@@ -88,7 +88,7 @@ export default function Cart() {
         {/* Cart summary */}
         <div className="flex flex-col sm:flex-row sm:justify-between items-center mt-5">
           <div className="mb-5 sm:mb-0">
-            <button className="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-md"
+            <button className="bg-red-600 hover:bg-red-800 mr-[20px] text-white py-2 px-4 rounded-md"
             onClick={()=> {
               dispatch(clearCart())
               setCartItems([])
@@ -97,18 +97,26 @@ export default function Cart() {
             >
               Clear Cart
             </button>
-          </div>
-          <div className="font-medium text-lg"
-          >Total:{total} </div>
-            </div>
-            </div>
-            <Link to={'/orderSummary'}>
+            <Link to={'/orderSummary'} className='mr-[20px]'>
             <button
                 className="bg-orange-500 mt-[10px] hover:bg-orange-600 text-white font-bold py-2 px-4 rounded "
                 type="button" >
               Proceed to Checkout
             </button>
             </Link>
+            <Link to={'/'}>
+            <button
+                className="bg-orange-500 mt-[10px] hover:bg-orange-600 text-white font-bold py-2 px-4 rounded "
+                type="button" >
+             Shop More .....
+            </button>
+            </Link>
+          </div>
+          <div className="font-medium text-lg"
+          >Total:${total.toFixed(2)} </div>
+            </div>
+            </div>
+           
 
             </div>
 
