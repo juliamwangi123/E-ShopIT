@@ -23,8 +23,6 @@ export const signup = createAsyncThunk('auth/signup', async({email, password})=>
                             });
     //get the token after posting 
     const {jwtToken,user } =res.data;
-    console.log(jwtToken)
-
     localStorage.setItem('token', jwtToken);
     localStorage.setItem('userId', user._id)
     return {jwtToken,user}

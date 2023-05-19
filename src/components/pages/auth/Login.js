@@ -1,29 +1,37 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+
 import{login } from '../../../redux/features/auth/loginSlice'
 import { useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const[formError, setError] = useState()
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const { loading, error ,isAuthenticated} = useSelector((state) => state.authLogin);
 
+
+  //handle login
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email,password  )
-    dispatch(login({email:email,password:password}))
-    
-   
+    if (!email || !password) {
+      setError('Field should be filled');
+      return
+    }
+    dispatch(login({email:email,password:password})) 
  };
+
+ 
 
  useEffect(() => {
   if( isAuthenticated ){
-    navigate('/profile')
+    navigate('/')
    }
  
  }, [isAuthenticated, navigate])
@@ -37,15 +45,16 @@ function Login() {
           <h2 className="text-4xl font-font-semibold mb-2 text-orange-500  ">LOGIN</h2>
           <p className='text-sm text-gray-400'> Welcome to E-shopIt</p>
           </div>
-      {error && <p>{error}</p>}
+      {error && <p  className="text-red-500">{error}</p>}
       <form className="space-y-6"  onSubmit={handleSubmit}>
         <label className="block text-gray-700 font-bold mb-1">Email:
         <input 
                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)} 
-                className="appearance-none block w-full py-3 px-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className={`appearance-none block w-full py-3 px-4 border ${formError && !email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
                 />
+                {formError && !email && <p className="text-red-500">{formError}</p>}
         </label>
          
         <label className="block text-gray-700 font-bold mb-2"> Password:
@@ -53,8 +62,9 @@ function Login() {
             type="password" 
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
-            className="appearance-none block w-full py-3 px-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            className={`appearance-none block w-full py-3 px-4 border ${formError && !email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
             />
+            {formError && !password && <p className="text-red-500">{formError}</p>}
         </label>
          
         <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

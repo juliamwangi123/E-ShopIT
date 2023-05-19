@@ -7,10 +7,12 @@ import ProductDetails from './products/ProductDetails';
 import Cart from './products/cart/Cart';
 import Home2 from './pages/home/Home2';
 import Profile from './pages/userProfile/Profile';
-
-
-import {CategoryProvider} from '../context/categoryContext'
 import OrderSummary from './pages/oderSummary/OrderSummary';
+// import HandleRedirects from './redirects/HandleRedirects';
+
+
+
+// import {CategoryProvider} from '../context/categoryContext'
 
 
 function App() {
@@ -18,8 +20,6 @@ function App() {
     
     <div className="App">
       <Router>
-      {/* <Navtop/> 
-      <Search/> */}
         <Routes>
         <Route path="/" element={<Home2/>} />
         <Route path="/login" element={<Login />} />

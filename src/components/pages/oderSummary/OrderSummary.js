@@ -34,9 +34,6 @@ const getTotal = () =>{
     getTotal()
   },[])
 
-
-
-
   return (
     <div className="container mx-auto px-4 orderConatiner py-8">
       <div className=" mx-auto  order bg-white rounded shadow-lg">
