@@ -9,8 +9,8 @@ import { FaGoogle } from 'react-icons/fa';
 
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('testUser@gmail.com');
+  const [password, setPassword] = useState('Test@123');
   const[formError, setError] = useState()
   const dispatch = useDispatch();
   const navigate = useNavigate()
