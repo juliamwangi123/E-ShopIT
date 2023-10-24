@@ -17,7 +17,7 @@ export const signup = createAsyncThunk('auth/signup', async({email, password})=>
     const data = {email, password};
 
     try{
-        const res = await axios.post('https://backend-production-ad2e.up.railway.app/signup/', 
+        const res = await axios.post('https://backend-iota-mauve.vercel.app/signup/', 
                             data, 
                             {headers:{'Content-Type': 'application/json' }
                             });

@@ -10,7 +10,7 @@ function Profile() {
   const {id} = useParams()
 
   useEffect(()=>{
-    axios.get(`https://backend-production-ad2e.up.railway.app/profile/${id}`)
+    axios.get(`https://backend-iota-mauve.vercel.app//profile/${id}`)
     .then((res)=>{
       setuserProfile(res.data)
     }).catch((error) => setError(error.message))

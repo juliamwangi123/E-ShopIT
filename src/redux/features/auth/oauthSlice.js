@@ -14,7 +14,7 @@ const initialState ={
 
 export const handleGoogleCallback = createAsyncThunk('auth/handleGoogleCallback', async (code) => {
     try {
-      const res = await axios.post('https://backend-production-ad2e.up.railway.app/auth/google', { code }); 
+      const res = await axios.post('https://backend-iota-mauve.vercel.app//auth/google', { code }); 
       console.log(res)
       const { token, user } = res.data;
       localStorage.setItem('token', token);

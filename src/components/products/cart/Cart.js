@@ -40,13 +40,13 @@ export default function Cart() {
               </tr>
             </thead>
             <tbody>
-              {cartItems.map((item) => (
-                <tr key={item._id} className="border-b">
+              {cartItems?.map((item) => (
+                <tr key={item?._id} className="border-b">
                   <td className="p-2">
-                    <img src={item.image} alt={item.name} className="h-20" />
+                    <img src={item?.image} alt={item?.name} className="h-20" />
                   </td>
-                  <td className="p-2">{item.name}</td>
-                  <td className="p-2">${item.price.toFixed(2)}</td>
+                  <td className="p-2">{item?.name}</td>
+                  <td className="p-2">${item?.price.toFixed(2)}</td>
                   <td className="p-2 ">
                       <button onClick={()=>
                       {
@@ -55,7 +55,7 @@ export default function Cart() {
                         dispatch(getTotal(total))
 
                       }}>+</button>
-                        <p>{item.quantity}</p>    
+                        <p>{item?.quantity}</p>    
 
                       <button
                       onClick={()=>{
@@ -66,7 +66,7 @@ export default function Cart() {
                       >-</button>
                     </td>
                   <td className="p-2">
-                    ${(item.price * item.quantity).toFixed(2)}
+                    ${(item?.price * item?.quantity).toFixed(2)}
                   </td>
                   <td className="p-2">
                     <button

@@ -14,7 +14,7 @@ const cartSlice = createSlice({
     reducers:{
         addItem:(state, action) =>{
             const getCartItem = JSON.parse(localStorage.getItem('cart')) || [];
-            const itemExists = getCartItem.find((item) => item._id === action.payload._id );
+            const itemExists = getCartItem?.find((item) => item?._id === action.payload._id );
 
             if(itemExists){
                 itemExists.quantity +=1
@@ -28,12 +28,12 @@ const cartSlice = createSlice({
         removeItem:(state,action) =>{
             
             const getCartItem =JSON.parse(localStorage.getItem('cart')) || [];
-            const removeItem = getCartItem.filter((item)=> item._id !== action.payload._id)
+            const removeItem = getCartItem?.filter((item)=> item?._id !== action.payload._id)
             localStorage.setItem('cart', JSON.stringify(removeItem))
         },
         addQuantity:(state, action) =>{
             const getCartItem = JSON.parse(localStorage.getItem('cart')) || [];
-            const itemExists = getCartItem.find((item) => item._id === action.payload._id );
+            const itemExists = getCartItem?.find((item) => item?._id === action.payload._id );
 
             if(itemExists){
                 itemExists.quantity +=1
@@ -42,7 +42,7 @@ const cartSlice = createSlice({
         },
         decrementQuantity: (state, action) => {
             const getCartItem = JSON.parse(localStorage.getItem('cart')) || [];
-            const itemExists = getCartItem.find((item) => item._id === action.payload._id );
+            const itemExists = getCartItem?.find((item) => item?._id === action.payload._id );
 
             if(itemExists){
                 if(itemExists.quantity === 1){
@@ -61,8 +61,8 @@ const cartSlice = createSlice({
         },
         getTotal:(state) =>{
             const getCartItem = JSON.parse(localStorage.getItem('cart')) || [];
-                const totalCart = getCartItem.map((item)=>{
-                return item.price * item.quantity})
+                const totalCart = getCartItem?.map((item)=>{
+                return item?.price * item?.quantity})
             
                 if(totalCart.length >0){
                     const total = totalCart.reduce((previousValue, currentValue) => {
@@ -77,7 +77,7 @@ const cartSlice = createSlice({
         },
         getCartLength: (state) => {
             const getCartItem = JSON.parse(localStorage.getItem("cart")) || [];
-            state.totalItems = getCartItem.length;
+            state.totalItems = getCartItem?.length;
           },
         
         
