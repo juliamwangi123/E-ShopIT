@@ -71,9 +71,7 @@ const cartSlice = createSlice({
                         state.total = total
                         localStorage.setItem('total',JSON.stringify(total))
                       
-                }
-
-              
+                }   
         },
         getCartLength: (state) => {
             const getCartItem = JSON.parse(localStorage.getItem("cart")) || [];
