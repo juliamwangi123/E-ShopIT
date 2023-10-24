@@ -11,7 +11,7 @@ const initialState = {
 }
 
 export const fetchProducts = createAsyncThunk('/products/fetchProducts', async()=>{
-    const getProducts = await axios.get('https://backend-production-ad2e.up.railway.app');
+    const getProducts = await axios.get('https://backend-iota-mauve.vercel.app/');
     const products =getProducts.data
     return products;
 });
